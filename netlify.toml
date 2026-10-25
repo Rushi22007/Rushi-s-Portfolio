@@ -1,5 +1,11 @@
 [build]
-  ignore = "git diff HEAD^ HEAD --name-only | grep -qEv '(\\.md$|LICENSE$|\\.env\\.example$|^\\.github/|^\\.vscode/)' && exit 1 || exit 0"
+  command = "npm run build"
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
