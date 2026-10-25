@@ -11,22 +11,23 @@ export const Hero = () => {
       <div
         className={cn(
           styles.paddingX,
-          "absolute inset-0 top-30 max-w-7xl mx-auto flex flex-row items-start gap-5 z-10 pointer-events-auto md:pointer-events-none",
+          "absolute inset-0 top-24 sm:top-32 max-w-7xl mx-auto flex flex-row items-start gap-4 sm:gap-5 z-10 pointer-events-auto md:pointer-events-none",
         )}
       >
-        {/* Title */}
-        <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915eff]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
+        {/* Title Indicator */}
+        <div className="flex flex-col justify-center items-center mt-3 sm:mt-5">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#915eff]" />
+          <div className="w-1 sm:h-80 h-32 violet-gradient" />
         </div>
 
         {/* About Me */}
         <div className="pointer-events-auto">
-          <h1 className={cn(styles.heroHeadText, "text-white")}>
+          <h1 className={cn(styles.heroHeadText, "text-white text-[32px] xs:text-[40px] sm:text-[60px] lg:text-[80px] leading-tight")}>
             Hi, I'm <span className="text-[#915eff]">Rushikesh</span>
           </h1>
-          <p className={cn(styles.heroSubText, "mt-2 text-white-100")}>
-            Python Developer & Data Analyst crafting <br className="sm:block hidden" />
+          <p className={cn(styles.heroSubText, "mt-2 text-white-100 text-[14px] xs:text-[16px] sm:text-[22px] lg:text-[28px] max-w-xl")}>
+            Python Developer &amp; Data Analyst crafting{" "}
+            <br className="sm:block hidden" />
             data pipelines, interactive dashboards, and ML models
           </p>
         </div>
