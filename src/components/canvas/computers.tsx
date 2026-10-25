@@ -113,4 +113,7 @@ const ComputersCanvas = () => {
   );
 };
 
+// Preload 3D model asset immediately on script load
+useGLTF.preload("./desktop_pc/scene.gltf");
+
 export default ComputersCanvas;

@@ -17,7 +17,8 @@ const Earth = () => {
 
 // Earth Canvas
 const EarthCanvas = () => {
-  const { ref, isInView } = useInView();
+  // Trigger loading 400px before user reaches the contact section
+  const { ref, isInView } = useInView({ rootMargin: "400px", initialVisible: true });
 
   return (
     <div ref={ref} className="h-full w-full">
@@ -44,5 +45,8 @@ const EarthCanvas = () => {
     </div>
   );
 };
+
+// Preload planet model immediately
+useGLTF.preload("./planet/scene.gltf");
 
 export default EarthCanvas;
