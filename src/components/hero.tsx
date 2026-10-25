@@ -23,11 +23,11 @@ export const Hero = () => {
         {/* About Me */}
         <div className="pointer-events-auto">
           <h1 className={cn(styles.heroHeadText, "text-white")}>
-            Hi, I'm <span className="text-[#915eff]">Shubham</span>
+            Hi, I'm <span className="text-[#915eff]">Rushikesh</span>
           </h1>
           <p className={cn(styles.heroSubText, "mt-2 text-white-100")}>
-            I develop 3D visuals, user <br className="sm:block hidden" />
-            interfaces and web applications
+            Python Developer & Data Analyst crafting <br className="sm:block hidden" />
+            data pipelines, interactive dashboards, and ML models
           </p>
         </div>
       </div>

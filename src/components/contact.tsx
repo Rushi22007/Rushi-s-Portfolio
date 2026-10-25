@@ -244,6 +244,112 @@ const ContactForm = () => {
   );
 };
 
+const DirectContactForm = () => {
+  const [form, setForm] = useState<ContactFormFields>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [fieldErrors, setFieldErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setFieldErrors((prev) => ({ ...prev, [name]: false }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const nextErrors = {
+      name: !isValidContactName(form.name),
+      email: !isValidContactEmail(form.email),
+      message: !isValidContactMessage(form.message),
+    };
+    setFieldErrors(nextErrors);
+    if (nextErrors.name || nextErrors.email || nextErrors.message) return;
+
+    const mailtoUrl = `mailto:officialrushikesh22@gmail.com?subject=${encodeURIComponent(
+      `Portfolio Inquiry from ${form.name}`
+    )}&body=${encodeURIComponent(
+      `Hi Rushikesh,\n\n${form.message}\n\nBest regards,\n${form.name}\n${form.email}`
+    )}`;
+
+    window.location.href = mailtoUrl;
+    toast.success("Opening your email client to send the message!");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
+      <label htmlFor="direct-name" className="flex flex-col">
+        <span className="text-white font-medium mb-3">Your Name*</span>
+        <input
+          type="text"
+          name="name"
+          id="direct-name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="What's your name?"
+          maxLength={200}
+          className="bg-tertiary py-3 px-5 placeholder:text-secondary text-white rounded-lg outline-hidden border border-secondary/10 font-medium"
+        />
+        {fieldErrors.name && (
+          <span className="text-red-400 mt-2 text-sm">Please enter a valid name (at least 3 characters).</span>
+        )}
+      </label>
+
+      <label htmlFor="direct-email" className="flex flex-col">
+        <span className="text-white font-medium mb-3">Your Email*</span>
+        <input
+          type="email"
+          name="email"
+          id="direct-email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="What's your email?"
+          maxLength={100}
+          className="bg-tertiary py-3 px-5 placeholder:text-secondary text-white rounded-lg outline-hidden border border-secondary/10 font-medium"
+        />
+        {fieldErrors.email && (
+          <span className="text-red-400 mt-2 text-sm">Please enter a valid email address.</span>
+        )}
+      </label>
+
+      <label htmlFor="direct-message" className="flex flex-col">
+        <span className="text-white font-medium mb-3">Your Message*</span>
+        <textarea
+          rows={5}
+          name="message"
+          id="direct-message"
+          value={form.message}
+          onChange={handleChange}
+          placeholder="How can I help you with Data Analytics or Python development?"
+          maxLength={500}
+          className="bg-tertiary py-3 px-5 placeholder:text-secondary text-white rounded-lg outline-hidden border border-secondary/10 font-medium resize-none"
+        />
+        {fieldErrors.message && (
+          <span className="text-red-400 mt-2 text-sm">Please enter a message (at least 5 characters).</span>
+        )}
+      </label>
+
+      <button
+        type="submit"
+        className="bg-[#915eff] hover:bg-[#804dee] py-3 px-8 outline-hidden w-fit text-white font-bold shadow-md shadow-primary rounded-xl transition cursor-pointer flex items-center gap-2"
+      >
+        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+        Send Direct Message
+      </button>
+    </form>
+  );
+};
+
 export const Contact = () => {
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
@@ -257,15 +363,67 @@ export const Contact = () => {
           <p className={styles.sectionSubText}>Get in touch</p>
           <h3 className={styles.sectionHeadText}>Contact.</h3>
 
-          {siteKey ? (
-            <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
-              <ContactForm />
-            </GoogleReCaptchaProvider>
-          ) : (
-            <p className="mt-12 text-secondary">
-              Contact form is currently unavailable.
-            </p>
-          )}
+          {/* Direct Contact Details Cards */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a
+              href="mailto:officialrushikesh22@gmail.com"
+              className="flex items-center gap-3.5 bg-tertiary/60 hover:bg-tertiary p-4 rounded-xl border border-secondary/15 hover:border-[#915eff]/50 transition group"
+            >
+              <div className="w-11 h-11 rounded-lg bg-[#915eff]/20 flex items-center justify-center text-[#915eff] shrink-0 group-hover:scale-110 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs text-secondary font-medium uppercase tracking-wider">Email</span>
+                <span className="text-[14px] font-semibold text-white group-hover:text-[#915eff] transition truncate">
+                  officialrushikesh22@gmail.com
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="tel:+918767599309"
+              className="flex items-center gap-3.5 bg-tertiary/60 hover:bg-tertiary p-4 rounded-xl border border-secondary/15 hover:border-[#915eff]/50 transition group"
+            >
+              <div className="w-11 h-11 rounded-lg bg-[#915eff]/20 flex items-center justify-center text-[#915eff] shrink-0 group-hover:scale-110 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs text-secondary font-medium uppercase tracking-wider">Mobile</span>
+                <span className="text-[14px] font-semibold text-white group-hover:text-[#915eff] transition">
+                  +91 8767599309
+                </span>
+              </div>
+            </a>
+
+            <div className="sm:col-span-2 flex items-center gap-3.5 bg-tertiary/40 p-4 rounded-xl border border-secondary/10">
+              <div className="w-11 h-11 rounded-lg bg-[#915eff]/20 flex items-center justify-center text-[#915eff] shrink-0">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs text-secondary font-medium uppercase tracking-wider">Location</span>
+                <span className="text-[14px] font-medium text-white">
+                  Pune, Maharashtra, India
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-secondary/10 pt-6">
+            <p className="text-sm font-medium text-secondary mb-2">Or send a message directly:</p>
+            {siteKey ? (
+              <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
+                <ContactForm />
+              </GoogleReCaptchaProvider>
+            ) : (
+              <DirectContactForm />
+            )}
+          </div>
         </motion.div>
 
         <motion.div

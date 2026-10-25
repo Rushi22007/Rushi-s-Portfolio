@@ -121,7 +121,7 @@ export const Works = () => {
   }, []);
 
   return (
-    <SectionWrapper>
+    <SectionWrapper idName="projects">
       <>
         {/* Title */}
         <motion.div variants={textVariant()}>

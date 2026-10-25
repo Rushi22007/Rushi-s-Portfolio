@@ -25,17 +25,27 @@ import tailwind from "./tech/tailwind.png";
 import threejs from "./tech/threejs.svg";
 import typescript from "./tech/typescript.png";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+// Data Analyst & Developer Tech Stack
+import python from "./tech/python.svg";
+import sql from "./tech/sql.svg";
+import pandas from "./tech/pandas.svg";
+import numpy from "./tech/numpy.svg";
+import powerbi from "./tech/powerbi.svg";
+import tableau from "./tech/tableau.svg";
+import excel from "./tech/excel.svg";
+import scikitlearn from "./tech/scikitlearn.svg";
+import postgresql from "./tech/postgresql.svg";
 
-import project1 from "./projects/project1.png";
-import project2 from "./projects/project2.png";
-import project3 from "./projects/project3.png";
-import project4 from "./projects/project4.png";
-import project5 from "./projects/project5.png";
-import project6 from "./projects/project6.png";
+// Companies & Education
+import adypu from "./company/adypu.svg";
+import deloitte from "./company/deloitte.svg";
+import tata from "./company/tata.svg";
+import school from "./company/school.svg";
+
+// Projects
+import salesDashboard from "./projects/sales-dashboard.jpg";
+import churnPrediction from "./projects/churn-prediction.jpg";
+import etlPipeline from "./projects/etl-pipeline.jpg";
 
 import user1 from "./testimonials/user1.jpg";
 import user2 from "./testimonials/user2.jpg";
@@ -69,16 +79,22 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  project1,
-  project2,
-  project3,
-  project4,
-  project5,
-  project6,
+  python,
+  sql,
+  pandas,
+  numpy,
+  powerbi,
+  tableau,
+  excel,
+  scikitlearn,
+  postgresql,
+  adypu,
+  deloitte,
+  tata,
+  school,
+  salesDashboard,
+  churnPrediction,
+  etlPipeline,
   user1,
   user2,
   user3,
