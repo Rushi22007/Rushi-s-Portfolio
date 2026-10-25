@@ -46,6 +46,8 @@ Here is the folder structure of this app.
 <!--- FOLDER_STRUCTURE_START --->
 ```bash
 3d-portfolio/
+  |- api/
+    |-- contact.ts
   |- netlify/
     |-- functions/
   |- public/
@@ -92,6 +94,7 @@ Here is the folder structure of this app.
   |- pnpm-lock.yaml
   |- pnpm-workspace.yaml
   |- tsconfig.json
+  |- vercel.json
   |- vite.config.ts
 ```
 <!--- FOLDER_STRUCTURE_END --->
